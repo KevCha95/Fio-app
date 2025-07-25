@@ -1,7 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import bg from '/background.jpg'
-import { Paper, Box, Typography, Stack } from '@mui/material'
+import {  Box, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import cat2 from '/Cat Love All GIF - Cat Love All - Discover & Share GIFs.gif'
 import cat1 from '/peach-goma-love-heart-dance.gif'
@@ -10,25 +8,27 @@ import cat1 from '/peach-goma-love-heart-dance.gif'
 import Particles from 'react-particles';
 import { loadFireworksPreset } from 'tsparticles-preset-fireworks';
 
+import type { Engine } from 'tsparticles-engine';
+
 function App() {
-  const particlesInit = useCallback(async engine => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     await loadFireworksPreset(engine);
   }, []);
 
-  const options = {
+  const ParticlesOptions = {
     preset: 'fireworks',
     fullScreen: { enable: false },
-    interactivity: {
-      detectsOn: 'canvas',
-      //events: { onClick: { enable: true, mode: 'explode' } },
-    },
+    // interactivity: {
+    //   detectsOn: 'canvas',
+    //   //events: { onClick: { enable: true, mode: 'explode' } },
+    // },
     sounds: {
       enable: false,
     },
   };
 
   const computeDays = () => {
-    const start = new Date('2025-04-22T00:00:00').getTime();
+    const start = new Date('2025-03-22T00:00:00').getTime();
     const now = Date.now();
     const diffMs = now - start;
     const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -56,7 +56,7 @@ function App() {
         }}
       >
         <Particles
-          options={options}
+          options={ParticlesOptions}
           init={particlesInit}
           style={{
             position: 'absolute',
